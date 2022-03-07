@@ -23,4 +23,12 @@ if [[ "$ORIGIN" == *"$KIT_UPSTREAM_NAME"* ]] ; then
     echo "2. Navigate to your fork on GitHub and copy its clone URL."
     echo "3. Clone your fork using its clone URL."
     echo "*********************************************************************"
+else
+    echo "*********************************************************************"
+    printf "\xF0\x9F\x98\xBA Meow, Kitty here!\n"
+    echo
+    echo "I am here to help you be successful in the GitKit activities."
+    echo "You will hear from me every once in a while when I think you"
+    echo "might need some help."
+    echo "*********************************************************************"    
 fi
