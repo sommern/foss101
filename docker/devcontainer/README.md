@@ -60,19 +60,19 @@ Return to the terminal in which you started the container and press `CTRL+C`.
 ### 2.1. Build the image
 
 ```
-docker build -t <<DOCKER IMAGE URL>> .
+docker build -t gitkit-devcontainer:dev .
 ```
 
 ### 2.2. Test the image
 
-Manual testing: Assuming you just built the container,
-test it by running it the same way a user would.
+Manual testing: Assuming you just built the container, test it by running it the same way a user would, except use `gitkit-devcontainer:dev` instead.
 
 Automated testing: No such thing at this time.
 
-### 2.3. Push the image
+### 2.3. Push/release the image
 
 ```
+docker tag gitkit-devcontainer:dev <<DOCKER IMAGE URL>>
 docker push <<DOCKER IMAGE URL>>
 ```
 

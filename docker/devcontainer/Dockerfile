@@ -11,6 +11,6 @@ RUN sudo rm -f packages.microsoft.gpg
 RUN sudo apt -y install apt-transport-https
 RUN sudo apt update
 RUN sudo apt -y install code
-RUN sudo apt install git
+RUN sudo apt -y install git
 
 USER headless
