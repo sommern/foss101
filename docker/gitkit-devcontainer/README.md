@@ -72,7 +72,9 @@ docker login
 docker push hfossedu/gitkit-devcontainer:latest
 ```
 
-### 2.4. Notes
+---
+
+## Notes
 
 * This needs some polish but it works pretty well and is very responsive on my machine.
   * Make a nice user
