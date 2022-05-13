@@ -80,7 +80,6 @@ docker push <<DOCKER IMAGE URL>>
 
 * This needs some polish but it works pretty well and is very responsive on my machine.
   * Make a nice user
-  * Install git
   * etc...
 * I started from an image that has TigerVNC installed
   * It runs both a VNC and a noVNC server.
