@@ -15,13 +15,7 @@ GitKit and its activities.
 1. Open a terminal and run the following command.
 
     ```
-    docker run -p 6901:6901 <<DOCKER IMAGE URL>>
-    ```
-
-    Wait until you see something like...
-
-    ```
-    <<SAMPLE OUTPUT>>
+    docker run -p 6901:6901 hfossedu/gitkit-devcontainer
     ```
 
     It may take several minutes the first time you run this.
@@ -32,6 +26,7 @@ GitKit and its activities.
 2. Connect to noVNC:
 
     * Point browser at: http://localhost:6901/
+    * Select full or light client.
     * Click "Connect"
     * Password: headless
 
@@ -60,20 +55,21 @@ Return to the terminal in which you started the container and press `CTRL+C`.
 ### 2.1. Build the image
 
 ```
-docker build -t gitkit-devcontainer:dev .
+docker build -t gitkit-devcontainer .
 ```
 
 ### 2.2. Test the image
 
-Manual testing: Assuming you just built the container, test it by running it the same way a user would, except use `gitkit-devcontainer:dev` instead.
+Manual testing: Assuming you just built the container, test it by running it the same way a user would, except use `hfossedu/gitkit-devcontainer:dev` instead.
 
 Automated testing: No such thing at this time.
 
 ### 2.3. Push/release the image
 
 ```
-docker tag gitkit-devcontainer:dev <<DOCKER IMAGE URL>>
-docker push <<DOCKER IMAGE URL>>
+docker tag gitkit-devcontainer hfossedu/gitkit-devcontainer:latest
+docker login
+docker push hfossedu/gitkit-devcontainer:latest
 ```
 
 ### 2.4. Notes
