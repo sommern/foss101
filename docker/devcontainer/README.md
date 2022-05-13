@@ -1,47 +1,83 @@
-(taken from https://github.com/HFOSSedu/GitKit/issues/23 by
-braughtg)
+# Devcontainer for GitKit
 
-I couldn't fork or make a PR for this so here is an issue that presents a working **prototype**.
+This subproject creates a Docker image that can be used by students
+as a complete self-contained development environment for use with
+GitKit and its activities.
 
-It is based on this image:
-* https://github.com/accetto/ubuntu-vnc-xfce-g3/blob/master/docker/xfce-firefox/README.md
+## 1. Use
 
-## Dockerfile
+### 1.1 Requirements
+
+* Docker Desktop installed and running for your Operating System.
+
+### 1.2. Start a Devcontainer
+
+1. Open a terminal and run the following command.
+
+    ```
+    docker run -p 6901:6901 <<DOCKER IMAGE URL>>
+    ```
+
+    Wait until you see something like...
+
+    ```
+    <<SAMPLE OUTPUT>>
+    ```
+
+    It may take several minutes the first time you run this.
+    Subsequent runs will be faster.
+
+    Leave the terminal open.
+
+2. Connect to noVNC:
+
+    * Point browser at: http://localhost:6901/
+    * Click "Connect"
+    * Password: headless
+
+
+Now work inside the browser to work inside the devcontainer.
+
+### 1.3. Launch VS Code inside devcontainer
+
+Within the browser:
+
+1. Open a terminal and enter
+
+    ```
+    code --no-sandbox
+    ```
+
+
+### 1.4. Stop the Devcontainer
+
+Return to the terminal in which you started the container and press `CTRL+C`.
+
+---
+
+## 2. Development
+
+### 2.1. Build the image
 
 ```
-FROM accetto/ubuntu-vnc-xfce-firefox-g3
-
-USER root
-
-RUN sudo apt update
-RUN sudo apt-get -y install wget gpg
-RUN sudo wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-RUN sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
-RUN sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-RUN sudo rm -f packages.microsoft.gpg
-RUN sudo apt -y install apt-transport-https
-RUN sudo apt update
-RUN sudo apt -y install code
-
-USER headless
+docker build -t <<DOCKER IMAGE URL>> .
 ```
 
-## To create the image:
-`docker build -t tiger .`
+### 2.2. Test the image
 
-## To run the image:
-`docker run -p 6901:6901 tiger`
+Manual testing: Assuming you just built the container,
+test it by running it the same way a user would.
 
-## Connect to noVNC:
-* Point browser at: `localhost:6901`
-* Click "Connect"
-* Password: headless
+Automated testing: No such thing at this time.
 
-## Launch VSCode:
-* Open a terminal
-* `code --no-sandbox`
+### 2.3. Push the image
 
-## Comments
+```
+docker push <<DOCKER IMAGE URL>>
+```
+
+### 2.4. Notes
+
 * This needs some polish but it works pretty well and is very responsive on my machine.
   * Make a nice user
   * Install git
@@ -59,6 +95,3 @@ USER headless
 * The need to use `--no-sandbox` flag on VSCode is a quick hack to fix the issue:
   * `Failed to move to new namespace: PID namespaces supported, Network namespace supported, but failed: errno = Operation not permitted`
   * Should be pretty easily fixable with some research.
-
-
-
