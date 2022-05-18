@@ -20,6 +20,6 @@ RUN apt-get -y install wget gpg apt-transport-https && \
     rm -f packages.microsoft.gpg && \
     apt-get update && \
     apt-get -y install code && \
-    apt-get -y --purge remove wget gpg apt-transport-https
+    apt-get -y --purge remove wget apt-transport-https
 
 USER headless
